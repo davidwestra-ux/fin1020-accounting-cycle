@@ -1,459 +1,118 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="FIN1020 interactive accounting cycle learning resource.">
-<title>FIN1020 | Interactive Accounting Cycle</title>
-<style>
-  :root{
-    --navy:#17324d;
-    --blue:#2d6f9f;
-    --blue-dark:#245b82;
-    --blue-soft:#e8f3fa;
-    --paper:#f5f8fb;
-    --white:#ffffff;
-    --muted:#607284;
-    --line:#cfdee9;
-    --success:#2f7252;
-    --shadow:0 10px 30px rgba(23,50,77,.12);
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    margin:0;
-    min-height:100vh;
-    font-family:Arial, Helvetica, sans-serif;
-    color:var(--navy);
-    background:linear-gradient(135deg,#eef5fa,#fbfcfe);
-  }
-  a{color:inherit}
-  .site-header{
-    background:var(--white);
-    border-bottom:1px solid var(--line);
-  }
-  .nav{
-    width:min(1180px,94vw);
-    margin:auto;
-    min-height:68px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-  }
-  .brand{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    text-decoration:none;
-    font-weight:700;
-  }
-  .brand-mark{
-    width:42px;height:42px;
-    border-radius:12px;
-    display:grid;
-    place-items:center;
-    color:white;
-    background:var(--blue);
-    font-size:18px;
-  }
-  .nav-links{
-    display:flex;
-    align-items:center;
-    gap:18px;
-    font-size:14px;
-  }
-  .nav-links a{text-decoration:none}
-  .nav-links a:hover{text-decoration:underline}
-  .hero{
-    width:min(1180px,94vw);
-    margin:32px auto 18px;
-    padding:30px;
-    background:var(--white);
-    border:1px solid var(--line);
-    border-radius:24px;
-    box-shadow:var(--shadow);
-    display:grid;
-    grid-template-columns:1.4fr .8fr;
-    gap:28px;
-    align-items:center;
-  }
-  .eyebrow{
-    display:inline-block;
-    color:var(--blue-dark);
-    background:var(--blue-soft);
-    padding:7px 11px;
-    border-radius:999px;
-    font-weight:700;
-    font-size:13px;
-    margin-bottom:12px;
-  }
-  h1{
-    margin:0;
-    font-size:clamp(34px,5vw,58px);
-    line-height:1.02;
-  }
-  .hero p{
-    color:var(--muted);
-    line-height:1.6;
-    font-size:18px;
-    max-width:760px;
-  }
-  .hero-card{
-    background:var(--paper);
-    border:1px solid var(--line);
-    border-radius:18px;
-    padding:20px;
-  }
-  .hero-card strong{display:block;margin-bottom:8px}
-  .hero-card ul{
-    margin:8px 0 0;
-    padding-left:20px;
-    color:#405a70;
-    line-height:1.6;
-  }
-  main{
-    width:min(1180px,94vw);
-    margin:0 auto 38px;
-  }
-  .section-heading{
-    margin:28px 0 12px;
-  }
-  .section-heading h2{margin:0;font-size:28px}
-  .section-heading p{margin:7px 0 0;color:var(--muted)}
-  .interactive-grid{
-    display:grid;
-    grid-template-columns:minmax(540px,720px) minmax(280px,1fr);
-    gap:24px;
-    align-items:start;
-  }
-  .panel{
-    background:var(--white);
-    border:1px solid var(--line);
-    border-radius:22px;
-    box-shadow:var(--shadow);
-  }
-  .cycle-panel{padding:18px}
-  .detail-panel{
-    padding:24px;
-    position:sticky;
-    top:18px;
-  }
-  .wheel-wrap{
-    position:relative;
-    width:min(100%,680px);
-    aspect-ratio:1/1;
-    margin:auto;
-  }
-  .wheel{
-    position:absolute;
-    inset:8%;
-    border-radius:50%;
-    border:18px solid var(--blue-soft);
-    box-shadow:inset 0 0 0 2px var(--line);
-  }
-  .centre{
-    position:absolute;
-    left:50%;top:50%;
-    transform:translate(-50%,-50%);
-    width:31%;
-    aspect-ratio:1/1;
-    border-radius:50%;
-    background:var(--blue);
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    font-weight:700;
-    font-size:clamp(18px,2.5vw,31px);
-    padding:18px;
-  }
-  .step{
-    position:absolute;
-    left:50%;top:50%;
-    width:27%;
-    min-height:72px;
-    transform:
-      translate(-50%,-50%)
-      rotate(calc(var(--i) * 45deg))
-      translateY(-235%)
-      rotate(calc(var(--i) * -45deg));
-    border:2px solid var(--line);
-    background:white;
-    color:var(--navy);
-    border-radius:14px;
-    padding:10px 8px;
-    font-size:clamp(12px,1.55vw,17px);
-    font-weight:700;
-    line-height:1.15;
-    text-align:center;
-    cursor:pointer;
-    box-shadow:0 5px 14px rgba(23,50,77,.1);
-    transition:.18s ease;
-  }
-  .step:hover,.step:focus-visible,.step.active{
-    border-color:var(--blue);
-    background:#edf6fc;
-    transform:
-      translate(-50%,-50%)
-      rotate(calc(var(--i) * 45deg))
-      translateY(-235%)
-      rotate(calc(var(--i) * -45deg))
-      scale(1.06);
-    outline:3px solid rgba(45,111,159,.18);
-  }
-  .num{
-    display:inline-flex;
-    width:24px;height:24px;
-    border-radius:50%;
-    align-items:center;justify-content:center;
-    background:var(--blue);
-    color:white;
-    margin-bottom:5px;
-    font-size:13px;
-  }
-  .arrow{
-    position:absolute;
-    inset:16%;
-    border:5px dashed rgba(45,111,159,.32);
-    border-radius:50%;
-    pointer-events:none;
-  }
-  .arrow:after{
-    content:"";
-    position:absolute;
-    right:5%;top:7%;
-    border-left:13px solid rgba(45,111,159,.55);
-    border-top:8px solid transparent;
-    border-bottom:8px solid transparent;
-    transform:rotate(42deg);
-  }
-  .detail-panel h3{margin:0 0 12px;font-size:28px}
-  .detail-panel p{line-height:1.6;color:#344f66}
-  .example{
-    margin-top:18px;
-    padding:16px;
-    background:var(--paper);
-    border-left:5px solid var(--blue);
-    border-radius:10px;
-    line-height:1.55;
-  }
-  .progress{
-    margin-top:18px;
-    font-size:14px;
-    color:var(--muted);
-  }
-  .progress-bar{
-    height:10px;
-    background:#e6eef4;
-    border-radius:999px;
-    overflow:hidden;
-    margin-top:8px;
-  }
-  .progress-fill{
-    width:12.5%;
-    height:100%;
-    background:var(--blue);
-    transition:width .2s ease;
-  }
-  .tip{
-    margin-top:16px;
-    font-size:13px;
-    color:var(--muted);
-  }
-  .about{
-    margin-top:28px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:16px;
-  }
-  .about article{
-    background:var(--white);
-    border:1px solid var(--line);
-    border-radius:18px;
-    padding:20px;
-  }
-  .about h3{margin:0 0 8px}
-  .about p{margin:0;color:var(--muted);line-height:1.55}
-  footer{
-    border-top:1px solid var(--line);
-    background:var(--white);
-    padding:24px 15px;
-    text-align:center;
-    color:var(--muted);
-    font-size:13px;
-  }
-  @media(max-width:900px){
-    .hero{grid-template-columns:1fr}
-    .interactive-grid{grid-template-columns:1fr}
-    .detail-panel{position:static}
-    .about{grid-template-columns:1fr}
-  }
-  @media(max-width:620px){
-    .nav{align-items:flex-start;padding:12px 0;flex-direction:column}
-    .nav-links{flex-wrap:wrap}
-    .hero{padding:22px}
-    .cycle-panel{padding:6px}
-    .step{width:30%;min-height:60px;font-size:11px;padding:6px 4px}
-    .centre{width:28%;font-size:16px;padding:9px}
-  }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Why Source Documents Are Important | FIN1020</title>
+  <meta name="description" content="FIN1020 interactive: Why Source Documents Are Important">
+  <style>
+    :root {
+      color-scheme: light;
+      --navy: #17365d;
+      --blue: #2f75b5;
+      --light: #eef4f9;
+      --text: #1f2937;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, var(--light), #ffffff);
+    }
+    header {
+      padding: 18px 24px;
+      background: var(--navy);
+      color: white;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: clamp(1.35rem, 3vw, 2rem);
+    }
+    header p {
+      margin: 6px 0 0;
+      opacity: .9;
+    }
+    main {
+      width: min(1000px, 100%);
+      margin: 0 auto;
+      padding: 24px 16px 36px;
+    }
+    .player-card {
+      background: white;
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 10px 30px rgba(23, 54, 93, .16);
+    }
+    #player-container {
+      width: min(750px, 100%);
+      aspect-ratio: 750 / 470;
+      margin: 0 auto;
+      background: #fff;
+      overflow: hidden;
+      border: 1px solid #ccd6e0;
+    }
+    ruffle-player {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .note {
+      max-width: 750px;
+      margin: 16px auto 0;
+      font-size: .95rem;
+      line-height: 1.5;
+      color: #4b5563;
+    }
+    noscript {
+      display: block;
+      padding: 16px;
+      background: #fff3cd;
+      border: 1px solid #ffe69c;
+    }
+  </style>
+
+  <script>
+    window.RufflePlayer = window.RufflePlayer || {};
+    window.RufflePlayer.config = {
+      autoplay: "on",
+      unmuteOverlay: "visible",
+      backgroundColor: "#FFFFFF",
+      letterbox: "on",
+      warnOnUnsupportedContent: true
+    };
+  </script>
+  <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
 </head>
 <body>
-<header class="site-header">
-  <nav class="nav" aria-label="Main navigation">
-    <a class="brand" href="#top">
-      <span class="brand-mark">FIN</span>
-      <span>FIN1020 Learning Hub</span>
-    </a>
-    <div class="nav-links">
-      <a href="#interactive">Interactive</a>
-      <a href="#about">About</a>
-    </div>
-  </nav>
-</header>
+  <header>
+    <h1>Why Source Documents Are Important</h1>
+    <p>FIN1020 — Accounting Cycle 1</p>
+  </header>
 
-<section class="hero" id="top">
-  <div>
-    <span class="eyebrow">FIN1020 • Accounting Cycle 1</span>
-    <h1>Explore the Accounting Cycle</h1>
-    <p>Select each stage to review its purpose and see a simple accounting example. This resource works in Chrome, on Chromebooks, and on mobile devices.</p>
-  </div>
-  <aside class="hero-card" aria-label="Learning goals">
-    <strong>Learning goals</strong>
-    <ul>
-      <li>Identify the eight stages of the accounting cycle.</li>
-      <li>Explain the purpose of each stage.</li>
-      <li>Connect each stage to a practical example.</li>
-    </ul>
-  </aside>
-</section>
+  <main>
+    <section class="player-card" aria-label="FIN1020 interactive">
+      <div id="player-container"></div>
+      <p class="note">
+        This legacy Flash activity is presented through Ruffle, an open-source
+        Flash emulator that runs in modern browsers.
+      </p>
+      <noscript>This activity requires JavaScript to be enabled.</noscript>
+    </section>
+  </main>
 
-<main>
-  <section id="interactive">
-    <div class="section-heading">
-      <h2>Interactive Accounting Cycle</h2>
-      <p>Click or tap a stage around the wheel.</p>
-    </div>
-
-    <div class="interactive-grid">
-      <div class="panel cycle-panel" aria-label="Accounting cycle diagram">
-        <div class="wheel-wrap">
-          <div class="wheel"></div>
-          <div class="arrow"></div>
-          <div class="centre">The Accounting Cycle</div>
-
-          <button class="step active" style="--i:0" data-step="0"><span class="num">1</span><br>Source Documents</button>
-          <button class="step" style="--i:1" data-step="1"><span class="num">2</span><br>Journalize</button>
-          <button class="step" style="--i:2" data-step="2"><span class="num">3</span><br>Post to Ledger</button>
-          <button class="step" style="--i:3" data-step="3"><span class="num">4</span><br>Trial Balance</button>
-          <button class="step" style="--i:4" data-step="4"><span class="num">5</span><br>Work Sheet</button>
-          <button class="step" style="--i:5" data-step="5"><span class="num">6</span><br>Financial Statements</button>
-          <button class="step" style="--i:6" data-step="6"><span class="num">7</span><br>Closing Entries</button>
-          <button class="step" style="--i:7" data-step="7"><span class="num">8</span><br>Post-Closing Trial Balance</button>
-        </div>
-      </div>
-
-      <aside class="panel detail-panel" aria-live="polite">
-        <h3 id="detail-title">1. Source Documents</h3>
-        <p id="detail-text"></p>
-        <div class="example" id="detail-example"></div>
-        <div class="progress">
-          <span id="progress-label">Stage 1 of 8</span>
-          <div class="progress-bar" aria-hidden="true">
-            <div class="progress-fill" id="progress-fill"></div>
-          </div>
-        </div>
-        <p class="tip">Keyboard users can use Tab and Enter to move through the stages.</p>
-      </aside>
-    </div>
-  </section>
-
-  <section class="about" id="about">
-    <article>
-      <h3>No Moodle login</h3>
-      <p>This site contains no Moodle links and can be shared directly with students.</p>
-    </article>
-    <article>
-      <h3>Device friendly</h3>
-      <p>The layout adjusts for desktop computers, Chromebooks, tablets, and phones.</p>
-    </article>
-    <article>
-      <h3>Easy to expand</h3>
-      <p>Additional FIN1020 interactives and course pages can be added later using the same design.</p>
-    </article>
-  </section>
-</main>
-
-<footer>
-  FIN1020 Learning Hub • Interactive Accounting Cycle
-</footer>
-
-<script>
-const steps = [
-  {
-    title:"1. Source Documents",
-    text:"Collect evidence of each business transaction. Common source documents include receipts, invoices, cheque copies, bank records, and cash-register summaries.",
-    example:"Example: A business buys $500 of supplies on account and receives an invoice from the supplier."
-  },
-  {
-    title:"2. Journalize",
-    text:"Analyze each transaction and record it chronologically in the general journal using equal debits and credits.",
-    example:"Example: Debit Supplies $500; credit Accounts Payable $500."
-  },
-  {
-    title:"3. Post to Ledger",
-    text:"Transfer each journal entry to the appropriate ledger accounts so that the running balance of every account can be determined.",
-    example:"Example: The $500 debit is posted to the Supplies account, and the $500 credit is posted to Accounts Payable."
-  },
-  {
-    title:"4. Trial Balance",
-    text:"List all ledger account balances and verify that total debits equal total credits. Equality does not guarantee that every transaction was recorded correctly, but it helps detect many errors.",
-    example:"Example: If total debits are $24,800, total credits should also be $24,800."
-  },
-  {
-    title:"5. Work Sheet",
-    text:"Organize the trial balance, adjustments, adjusted trial balance, income statement columns, and balance sheet columns in one working document.",
-    example:"Example: Record depreciation, supplies used, and other adjustments before preparing financial statements."
-  },
-  {
-    title:"6. Financial Statements",
-    text:"Prepare the formal reports that summarize the business’s performance and financial position, usually including an income statement and balance sheet.",
-    example:"Example: Revenue of $18,000 minus expenses of $13,500 gives net income of $4,500."
-  },
-  {
-    title:"7. Closing Entries",
-    text:"Close temporary accounts such as revenues, expenses, and drawings so that they begin the next accounting period with zero balances.",
-    example:"Example: Transfer revenue and expense balances to Income Summary, then transfer net income to Capital."
-  },
-  {
-    title:"8. Post-Closing Trial Balance",
-    text:"Prepare a final trial balance containing only permanent accounts after closing entries have been posted. This confirms that the ledger remains in balance for the next period.",
-    example:"Example: Assets, liabilities, and owner’s capital remain; revenue and expense accounts are absent."
-  }
-];
-
-const title = document.getElementById("detail-title");
-const text = document.getElementById("detail-text");
-const example = document.getElementById("detail-example");
-const progressLabel = document.getElementById("progress-label");
-const progressFill = document.getElementById("progress-fill");
-const buttons = [...document.querySelectorAll(".step")];
-
-function showStep(index){
-  const item = steps[index];
-  title.textContent = item.title;
-  text.textContent = item.text;
-  example.textContent = item.example;
-  progressLabel.textContent = `Stage ${index + 1} of ${steps.length}`;
-  progressFill.style.width = `${((index + 1) / steps.length) * 100}%`;
-  buttons.forEach((button,i)=>button.classList.toggle("active",i===index));
-}
-buttons.forEach(button=>{
-  button.addEventListener("click",()=>showStep(Number(button.dataset.step)));
-});
-showStep(0);
-</script>
+  <script>
+    window.addEventListener("load", () => {
+      const ruffle = window.RufflePlayer.newest();
+      const player = ruffle.createPlayer();
+      document.getElementById("player-container").appendChild(player);
+      player.load({
+        url: "fin1020_mm004.swf",
+        autoplay: "on"
+      });
+    });
+  </script>
 </body>
 </html>

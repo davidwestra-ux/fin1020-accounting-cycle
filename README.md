@@ -1,2 +1,9 @@
-# fin1020-accounting-cycle
-FIN1020 interactive accounting cycle for students
+# Why Source Documents Are Important
+
+A GitHub Pages-ready FIN1020 interactive.
+
+Files:
+- `index.html`
+- `fin1020_mm004.swf`
+
+Upload both files to the same folder in your GitHub repository.

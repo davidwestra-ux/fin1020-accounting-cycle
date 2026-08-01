@@ -3,116 +3,103 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Why Source Documents Are Important | FIN1020</title>
-  <meta name="description" content="FIN1020 interactive: Why Source Documents Are Important">
-  <style>
-    :root {
-      color-scheme: light;
-      --navy: #17365d;
-      --blue: #2f75b5;
-      --light: #eef4f9;
-      --text: #1f2937;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, var(--light), #ffffff);
-    }
-    header {
-      padding: 18px 24px;
-      background: var(--navy);
-      color: white;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: clamp(1.35rem, 3vw, 2rem);
-    }
-    header p {
-      margin: 6px 0 0;
-      opacity: .9;
-    }
-    main {
-      width: min(1000px, 100%);
-      margin: 0 auto;
-      padding: 24px 16px 36px;
-    }
-    .player-card {
-      background: white;
-      border-radius: 14px;
-      padding: 18px;
-      box-shadow: 0 10px 30px rgba(23, 54, 93, .16);
-    }
-    #player-container {
-      width: min(750px, 100%);
-      aspect-ratio: 750 / 470;
-      margin: 0 auto;
-      background: #fff;
-      overflow: hidden;
-      border: 1px solid #ccd6e0;
-    }
-    ruffle-player {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-    .note {
-      max-width: 750px;
-      margin: 16px auto 0;
-      font-size: .95rem;
-      line-height: 1.5;
-      color: #4b5563;
-    }
-    noscript {
-      display: block;
-      padding: 16px;
-      background: #fff3cd;
-      border: 1px solid #ffe69c;
-    }
-  </style>
-
-  <script>
-    window.RufflePlayer = window.RufflePlayer || {};
-    window.RufflePlayer.config = {
-      autoplay: "on",
-      unmuteOverlay: "visible",
-      backgroundColor: "#FFFFFF",
-      letterbox: "on",
-      warnOnUnsupportedContent: true
-    };
-  </script>
-  <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+  <title>Home | FIN1020</title>
+  <meta name="description" content="Modern recreation of FIN1020: Accounting Cycle 1">
+  <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-  <header>
-    <h1>Why Source Documents Are Important</h1>
-    <p>FIN1020 — Accounting Cycle 1</p>
-  </header>
 
-  <main>
-    <section class="player-card" aria-label="FIN1020 interactive">
-      <div id="player-container"></div>
-      <p class="note">
-        This legacy Flash activity is presented through Ruffle, an open-source
-        Flash emulator that runs in modern browsers.
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">FIN</span>
+      <span class="brand-text">
+        <strong>FIN1020</strong>
+        <span>Accounting Cycle 1</span>
+      </span>
+    </a>
+    <nav class="top-nav" aria-label="Primary navigation">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="project-1/index.html">Project 1</a>
+      <a href="project-2/index.html">Project 2</a>
+      <a href="resources/index.html">Resources</a>
+    </nav>
+  </div>
+</header>
+
+
+<section class="site-header">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Learn EveryWare course recreation</p>
+      <h1>Accounting Cycle 1</h1>
+      <p class="hero-copy">
+        A modern, student-friendly recreation of the original FIN1020 course,
+        organized around the accounting cycle for a service business.
       </p>
-      <noscript>This activity requires JavaScript to be enabled.</noscript>
-    </section>
-  </main>
+    </div>
+    <div class="hero-card">
+      <p>Course structure</p>
+      <strong>2 Projects</strong>
+      <span>Project 1: The Accounting Cycle<br>Project 2: Final Project</span>
+    </div>
+  </div>
+</section>
 
-  <script>
-    window.addEventListener("load", () => {
-      const ruffle = window.RufflePlayer.newest();
-      const player = ruffle.createPlayer();
-      document.getElementById("player-container").appendChild(player);
-      player.load({
-        url: "fin1020_mm004.swf",
-        autoplay: "on"
-      });
-    });
-  </script>
+<main id="main">
+  <section>
+    <div class="section-heading">
+      <div>
+        <h2>Choose a project</h2>
+        <p>The first prototype preserves the original two-project structure while providing a modern responsive framework.</p>
+      </div>
+    </div>
+    <div class="grid two">
+      <article class="card">
+        <span class="meta">Project 1</span>
+        <h3>The Accounting Cycle</h3>
+        <p>Build foundational skill in source documents, transaction analysis, journalizing, posting, and trial balance.</p>
+        <a class="button" href="project-1/index.html">Open Project 1 →</a>
+      </article>
+      <article class="card">
+        <span class="meta">Project 2</span>
+        <h3>Final Project</h3>
+        <p>Bring the accounting-cycle steps together in a culminating application.</p>
+        <a class="button" href="project-2/index.html">Open Project 2 →</a>
+      </article>
+    </div>
+  </section>
+
+  <section style="margin-top:34px">
+    <div class="section-heading">
+      <div>
+        <h2>Prototype features</h2>
+        <p>This version gives us a safe foundation before adding the original lesson content and replacing Flash activities.</p>
+      </div>
+    </div>
+    <div class="grid three">
+      <article class="card"><span class="badge">Responsive</span><h3>Works on modern devices</h3><p>Designed for Chromebooks, desktops, tablets, and phones.</p></article>
+      <article class="card"><span class="badge">Reusable</span><h3>Consistent lesson pages</h3><p>Every lesson can use the same navigation, structure, and accessibility features.</p></article>
+      <article class="card"><span class="badge">Expandable</span><h3>Ready for your materials</h3><p>YouTube videos, spreadsheets, worksheets, quizzes, and interactives can be added as the restoration proceeds.</p></article>
+    </div>
+  </section>
+
+  <section style="margin-top:34px">
+    <div class="notice">
+      <strong>Restoration status:</strong> this first package is the website skeleton. Original text, images, downloads, and lesson links will be inserted in later passes after each source page is reviewed.
+    </div>
+  </section>
+</main>
+
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>FIN1020 course recreation prototype</span>
+    <span>Neutral blue theme · <span data-year></span></span>
+  </div>
+</footer>
+<script src="assets/js/site.js"></script>
+
 </body>
 </html>
